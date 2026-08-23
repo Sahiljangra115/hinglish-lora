@@ -1,0 +1,15 @@
+# Hosted list price, USD per 1M tokens, standard (non-batch) tier.
+# Source: https://developers.openai.com/api/docs/pricing  (table row "gpt-4o-mini | $0.15 | $0.075 | - | $0.60")
+# Retrieved 2026-10-14. Prices change; re-check the page before quoting.
+hosted:
+  name: "gpt-4o-mini"
+  input_per_1m: 0.15
+  output_per_1m: 0.60
+  source_url: "https://developers.openai.com/api/docs/pricing"
+  retrieved: "2026-10-14"
+  # Latency is NOT measured by this repo (no API key). Left null on purpose.
+  p50_latency_s: null
+local:
+  # Electricity price in USD per kWh. Left null: no primary-source tariff was cited.
+  # Fill from your own bill to get a USD figure; energy (kWh) is reported either way.
+  usd_per_kwh: null

@@ -1,0 +1,11 @@
+data/*.csv
+adapters/
+export/
+logs/
+results/dpo_pairs.jsonl
+*.safetensors
+*.gguf
+.env
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/

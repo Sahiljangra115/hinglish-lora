@@ -35,7 +35,7 @@ Differences from the paper, stated plainly: the NER output format here is my own
 ## How to run
 
 ```
-source /home/ladliju/Developer/Machine-learning/.venv/bin/activate   # ml venv; peft installed there
+source $ML_VENV/bin/activate   # ml venv; peft installed there
 ./run_all.sh          # waits for free GPU, trains, evaluates 3 arms, runs Shrota transfer
 python -m pytest tests
 ```
@@ -66,7 +66,7 @@ python cost_compare.py --bench ../results/bench_serve_hf_lora.json
 
 DPO pairs: the plan wants preferences from a large model's judgments. That needs a hosted API and is not done; `dpo.py` instead uses gold references as chosen and the SFT model's clearly worse outputs as rejected. You can supply judge-labelled pairs with `--pairs_file` (JSONL: `messages`, `chosen`, `rejected`). The learning rate, beta and thresholds are untuned guesses.
 
-mini-inference-engine (`/home/ladliju/Developer/Projects/mini-inference-engine`): it is an offline engine (`engine.llm.LLM`, no HTTP layer) and has **no LoRA support**, so the adapter must be merged first. Run `merge_export.py`, then `python serve.py --backend engine --model ../export/qwen05b-comi-merged`; `serve.py` wraps `LLM.generate` in the HTTP endpoint. Its README lists the core model, scheduler and kernels as still unwritten stubs, so this path is untested and may not run until that project is finished. Native adapter-swapping in the engine would be future work there.
+mini-inference-engine (separate local project, `Projects/mini-inference-engine`): it is an offline engine (`engine.llm.LLM`, no HTTP layer) and has **no LoRA support**, so the adapter must be merged first. Run `merge_export.py`, then `python serve.py --backend engine --model ../export/qwen05b-comi-merged`; `serve.py` wraps `LLM.generate` in the HTTP endpoint. Its README lists the core model, scheduler and kernels as still unwritten stubs, so this path is untested and may not run until that project is finished. Native adapter-swapping in the engine would be future work there.
 
 ## Results on COMI-LINGUA test (300-sample subsets)
 
@@ -81,7 +81,7 @@ Training time, peak VRAM, seconds per sentence: pending, run later.
 
 ## Shrota transfer
 
-`src/shrota_eval.py` collects transcript segments from the Shrota project at `/home/ladliju/Developer/Projects/lets` (`data/transcripts/*.json` and `eval/cache/*.transcript.json`). Measured: only **78 unique segments with 3 or more words** exist there, not the 200 the plan assumed, and most are not Hinglish (46 English, 11 Italian, 8 Spanish, 11 Hindi, 2 hi-en by the pipeline's language tag). So a 100-segment hand-labelled transfer test is not possible from the current data; more Hinglish audio would have to be transcribed first.
+`src/shrota_eval.py` collects transcript segments from the Shrota project in the separate local project `Projects/lets` (`data/transcripts/*.json` and `eval/cache/*.transcript.json`). Measured: only **78 unique segments with 3 or more words** exist there, not the 200 the plan assumed, and most are not Hinglish (46 English, 11 Italian, 8 Spanish, 11 Hindi, 2 hi-en by the pipeline's language tag). So a 100-segment hand-labelled transfer test is not possible from the current data; more Hinglish audio would have to be transcribed first.
 
 The script has no gold labels, so it writes base and SFT outputs plus reference-free sanity stats (length ratio, Devanagari leakage, copy rate, empty-entity rate). A benchmark-to-real gap needs hand labels. Results: pending, run later.
 

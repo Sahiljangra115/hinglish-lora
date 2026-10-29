@@ -1,0 +1,33 @@
+{
+ "mode": "base_zeroshot",
+ "n_mt": 300,
+ "n_ner": 300,
+ "shots": 0,
+ "mt": {
+  "bleu": 12.12,
+  "chrf++": 33.49
+ },
+ "ner": {
+  "macro_p": 2.56,
+  "macro_r": 0.03,
+  "macro_f1": 0.06,
+  "macro_all_f1": 8.17,
+  "micro_f1": 0.28,
+  "per_label_f1": {
+   "DATE": 0.0,
+   "EMOJI": 0.0,
+   "GPE": 0.0,
+   "HASHTAG": 0.0,
+   "LOCATION": 0.0,
+   "MENTION": 0.0,
+   "ORGANISATION": 0.0,
+   "PERSON": 0.6,
+   "TIME": 0.0,
+   "X": 81.1
+  }
+ },
+ "mt_sec_per_sentence": 0.094,
+ "ner_sec_per_sentence": 0.24,
+ "ner_unparseable_rate": 0.59,
+ "peak_vram_gb": 1.24
+}

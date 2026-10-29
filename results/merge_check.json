@@ -1,0 +1,26 @@
+{
+ "note": "CPU fp32 load of bf16 merged export vs base+unmerged adapter, 3 MT test prompts",
+ "rows": [
+  {
+   "max_abs_logit_diff": 0.9761614203453064,
+   "argmax_agree": 0.9860140085220337,
+   "same_greedy_text": true,
+   "merged": "England captain Eoin Morgan has said that England is currently playing T20 World Cup matches.",
+   "adapter": "England captain Eoin Morgan has said that England is currently playing T20 World Cup matches."
+  },
+  {
+   "max_abs_logit_diff": 0.9761795997619629,
+   "argmax_agree": 0.9919999837875366,
+   "same_greedy_text": true,
+   "merged": "Prime Minister Narendra Modi and Rajnath Singh jointly presented this proposal.",
+   "adapter": "Prime Minister Narendra Modi and Rajnath Singh jointly presented this proposal."
+  },
+  {
+   "max_abs_logit_diff": 0.9761614203453064,
+   "argmax_agree": 0.9856114983558655,
+   "same_greedy_text": true,
+   "merged": "In this coronavirus era, doctors, nurses, healthcare workers, and ambulance drivers are all in need of protection... Who is the name of the virus?",
+   "adapter": "In this coronavirus era, doctors, nurses, healthcare workers, and ambulance drivers are all in need of protection... Who is the name of the virus?"
+  }
+ ]
+}
